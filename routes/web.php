@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/addprofile', 'WebController@addprofile')->name('web.addprofile');
+// Route::get('/addprofile', 'WebController@addprofile')->name('web.addprofile');
+// Route::get('/addprofile', 'App\Http\Controllers\WebController@addprofile');
+Route::get('/addprofile', [WebController::class, 'addprofile']);
+
