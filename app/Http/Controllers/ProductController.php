@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductType;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $productTypes = ProductType::all()->pluck('name','id');
 
-        return view('product.create')->with('productTypes',$productTypes);
+        return view('products.create')->with('productTypes',$productTypes);
     }
 
     /**
@@ -39,7 +39,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Check input
+        $rules = [
+            'name' => 'required',
+            'cost' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
+            'image' => 'required||mimes:jpg,jpeg,bmp,png|max:10000',
+        ];
+
+        $request->validate($rules);
+        //save file
+        //$product->Field name = $request->name of input
+        $product = new Product();
+        $product->name = $request->name;
+        $product->cost = $request->cost;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->product_type_id = $request->product_type_id;
+        $product->save();
+
+        //upload file
+        if($request->hasFile('image')){
+            $filename = 'product-'.$product->id.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path().'/images/products/',$filename);
+            $product->image = $filename;
+        } else{
+            $product->image = 'no-image.jpg';
+        }
+        $product->save();
+
+        return redirect()->route('products.index')->with('status','บันทึกข้อมูลสำเร็จ');
     }
 
     /**

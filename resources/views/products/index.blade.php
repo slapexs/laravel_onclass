@@ -49,11 +49,6 @@
 
                 <h3 class="mb-0">ข้อมูลสินค้า (# {{count($products)}} รายการ)</h3>
 
-
-
-
-
-
                 <!-- Add new-->
 
                 <div class="col text-right">
