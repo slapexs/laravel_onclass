@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $table = 'products';
+    protected $primatyKey = 'id';
+    protected $guarded = [];
+    
+    public function productType(){
+
+        return $this->belongsTo('App\ProductType','product_type_id','id');
+
+    }
 }
