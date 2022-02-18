@@ -26,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $productTypes = ProductType::all()->pluck('name','id');
+
+        return view('product.create')->with('productTypes',$productTypes);
     }
 
     /**
