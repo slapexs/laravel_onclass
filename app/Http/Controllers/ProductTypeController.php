@@ -26,7 +26,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_type.create');
     }
 
     /**
@@ -37,7 +37,17 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Check input
+        $rules = [
+            'product_type_name' => 'required'
+        ];
+
+        $request->validate($rules);
+        $product_type = new ProductType();
+        $product_type->name = $request->product_type_name;
+        $product_type->save();
+
+        return redirect()->route('product_types.index')->with('status', 'เพิ่มประเภทสินค้าสำเร็จ');
     }
 
     /**
