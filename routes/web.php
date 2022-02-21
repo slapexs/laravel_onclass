@@ -18,3 +18,4 @@ Route::post('register', 'App\Http\Controllers\RegistrationController@store');
 
 Route::resource('product_types', 'App\Http\Controllers\ProductTypeController');
 Route::resource('products', 'App\Http\Controllers\ProductController');
+

@@ -8,6 +8,7 @@ use App\Models\ProductType;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
