@@ -4,9 +4,8 @@
 
  @section('content')
 
- <div class="row">
+ <div class="container">
 
-     <div class="col">
 
          <div class="card shadow">
 
@@ -174,7 +173,6 @@
 
          </div>
 
-     </div>
 
  </div>
 
