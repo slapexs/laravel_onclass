@@ -93,7 +93,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+       //
     }
 
     /**
@@ -105,7 +105,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

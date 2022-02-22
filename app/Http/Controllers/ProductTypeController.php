@@ -69,7 +69,8 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product_type = ProductType::find($id);
+        return view('product_type.edit')->with('product_type', $product_type);
     }
 
     /**
@@ -81,7 +82,17 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'product_type_name' => 'required'
+        ];
+
+        $request->validate($rules);
+        $update = ProductType::find($id);
+        $update->name = $request->product_type_name;
+        $update->save();
+
+        return redirect()->route('product_types.index')->with('status', 'Product type updated!');
+
     }
 
     /**
@@ -92,9 +103,8 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        
+
         ProductType::destroy($id);
         return back();
-        
     }
 }

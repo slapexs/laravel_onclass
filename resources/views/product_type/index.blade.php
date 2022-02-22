@@ -52,7 +52,7 @@
                             <form class="delete" action="{{route('product_types.destroy',$item->id)}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 {{ csrf_field() }}
-                                <a href="{{route('products.edit', $item->id)}}" class="btn btn-sm btn-outline-success"> <i class="fa fa-edit"></i> แก้ไข</a>
+                                <a href="{{url('product_types/edit',$item->id)}}" class="btn btn-sm btn-outline-success"> <i class="fa fa-edit"></i> แก้ไข</a>
                                 <button type="submit" class="btn btn-sm btn-outline-danger"> <i class="fa fa-trash"></i> ลบ</button>
                             </form>
                         </td>
