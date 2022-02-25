@@ -93,7 +93,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $productType = ProductType::all()->pluck('name','id');
+        return view('products.edit')->with('product', $product)->with('productType', $productType);
     }
 
     /**
@@ -105,7 +107,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Check input
+        $rules = [
+            'name' => 'required',
+            'cost' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
+            // 'image' => 'required||mimes:jpg,jpeg,bmp,png|max:10000',
+        ];
+
+        $request->validate($rules);
+        //save file
+        //$product->Field name = $request->name of input
+        $product = Product::find($id);
+        $product->update($request->all());
+
+        //upload file
+        if($request->hasFile('image')){
+            $filename = 'product-'.$product->id.'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path().'/images/products/',$filename);
+            $product->image = $filename;
+        } else{
+            $product->image = 'no-image.jpg';
+        }
+        $product->save();
+        return redirect()->route('products.index')->with('status','แก้ไขข้อมูลสำเร็จ');
+
+        
     }
 
     /**
