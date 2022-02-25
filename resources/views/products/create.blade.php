@@ -62,9 +62,9 @@
 
                              {!! Form::label('name', 'ชื่อสินค้า'); !!}
 
-                             {!! Form::text('name', null, ['class' => 'form-control'.($errors->has('name') ? 'is-invalid' : ''),]); !!}
+                             {!! Form::text('name', null, ['class' => 'form-control'.($errors->has('name') ? 'is-invalid form-control' : ''),]); !!}
 
-                             {!! $errors->first('name', '<p class="text-red text-sm p-1">:message</p>') !!}
+                             {!! $errors->first('name', '<p class="text-danger text-sm p-1">:message</p>') !!}
 
 
 
@@ -82,6 +82,9 @@
                              {!! Form::select('product_type_id', $productTypes,null,
 
                              ['class' => 'form-control']); !!}
+
+
+
 
                          </div>
 
@@ -101,9 +104,9 @@
 
                              {!! Form::label('cost', 'ราคาทุน'); !!}
 
-                             {!! Form::text('cost', null, ['class' => 'form-control'.($errors->has('cost') ? 'is-invalid' : ''),]); !!}
+                             {!! Form::text('cost', null, ['class' => 'form-control'.($errors->has('cost') ? 'is-invalid form-control' : ''),]); !!}
 
-                             {!! $errors->first('cost', '<p class="text-red text-sm p-1">:message</p>') !!}
+                             {!! $errors->first('cost', '<p class="text-danger text-sm p-1">:message</p>') !!}
 
                          </div>
 
@@ -118,6 +121,7 @@
                              {!! Form::label('price', 'ราคาขาย'); !!}
 
                              {!! Form::text('price', null, ['class' => 'form-control']); !!}
+                             {!! $errors->first('price', '<p class="text-danger text-sm p-1">:message</p>') !!}
 
                          </div>
 
@@ -132,6 +136,7 @@
                              {!! Form::label('quantity', 'จำนวนคงเหลือ'); !!}
 
                              {!! Form::text('quantity', null, ['class' => 'form-control']); !!}
+                             {!! $errors->first('quantity', '<p class="text-danger text-sm p-1">:message</p>') !!}
 
                          </div>
 
@@ -150,6 +155,7 @@
                          {!! Form::label('image', 'รูปภาพ'); !!}
 
                          {!! Form::file('image', null, ['class' => 'form-control-file']); !!}
+                         {!! $errors->first('file', '<p class="text-danger text-sm p-1">:message</p>') !!}
 
 
 
