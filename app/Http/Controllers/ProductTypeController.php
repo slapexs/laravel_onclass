@@ -39,12 +39,12 @@ class ProductTypeController extends Controller
     {
         // Check input
         $rules = [
-            'product_type_name' => 'required'
+            'name' => 'required'
         ];
 
         $request->validate($rules);
         $product_type = new ProductType();
-        $product_type->name = $request->product_type_name;
+        $product_type->name = $request->name;
         $product_type->save();
 
         return redirect()->route('product_types.index')->with('status', 'เพิ่มประเภทสินค้าสำเร็จ');
@@ -70,6 +70,8 @@ class ProductTypeController extends Controller
     public function edit($id)
     {
         //
+        $product_type = ProductType::find($id);
+        return view('product_type.edit')->with('product_type', $product_type);
     }
 
     /**
@@ -81,7 +83,18 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $request->validate($rules);
+        $product_type = ProductType::find($id);
+        $product_type->name = $request->name;
+        // $product_type->update($request->all());
+        $product_type->save();
+       
+
+        return redirect()->route('product_types.index')->with('status', 'แก้ไขประเภทสินค้าสำเร็จ');
     }
 
     /**
